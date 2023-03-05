@@ -58,8 +58,13 @@
 		<button type="default" size="mini">提交表单</button>
 		<button type="warn" loading plain>提交表单</button>
 		
-		<u-button class="custom-style" text="雪月夜"></u-button>
-		
+<!-- 		<u-button class="custom-style" text="雪月夜"></u-button>
+ -->		
+
+		<!-- navigator导航组件，url赋值有2种，相对路径和绝对路径"../first/first"，"/pages/first/first" -->
+		<!-- navigator导航组件还有一套对应的导航api, 它们是和open-type类型对应，如uni.navigateTo -->
+		<navigator url="/pages/news/news" open-type="navigate">去新闻列表</navigator>
+ 
 	</view>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		新闻列表
 	</view>
 </template>
 
