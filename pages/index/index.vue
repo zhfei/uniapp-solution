@@ -30,6 +30,18 @@
 				</view>
 			</view>
 		</scroll-view>
+		
+		<swiper class="swip" autoplay interval="2000" circular indicator-dots>
+			<swiper-item class="swipCell">
+				<image src="@/static/images/good1.jpeg" mode="widthFix"></image>
+			</swiper-item>
+			<swiper-item>
+				<image src="@/static/images/good2.jpeg" mode="widthFix"></image>
+			</swiper-item>
+			<swiper-item>
+				<image src="@/static/images/good3.jpeg" mode="widthFix"></image>
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 
@@ -67,6 +79,12 @@
 			margin-right: 20rpx;
 		}
 	}
+}
+
+.swip {
+	width: 750rpx;
+	height: 550rpx;
+	background-color: pink;
 	
 }
 </style>
