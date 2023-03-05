@@ -30,10 +30,11 @@
 				</view>
 			</view>
 		</scroll-view>
-		
+		<!-- swiper容器的高度要和里面item的高度设置一致，才能显示完整 -->
+		<!-- image的展示需要设置2个地方，一是宽高，二是内容显示模式mode。 model类型包括：scaleToFill完全展示并拉伸，aspectFill展示最长边，aspectFit展示最短边 -->
 		<swiper class="swip" autoplay interval="2000" circular indicator-dots>
 			<swiper-item class="swipCell">
-				<image src="@/static/images/good1.jpeg" mode="widthFix"></image>
+				<image src="@/static/images/good1.jpeg" mode="aspectFit"></image>
 			</swiper-item>
 			<swiper-item>
 				<image src="@/static/images/good2.jpeg" mode="widthFix"></image>
@@ -42,6 +43,14 @@
 				<image src="@/static/images/good3.jpeg" mode="widthFix"></image>
 			</swiper-item>
 		</swiper>
+		
+		<!-- show-menu-by-longpress：识别图像内的二维码，发送朋友 -->
+		<!-- image的展示需要设置2个地方，一是宽高，二是内容显示模式mode。 model类型包括：scaleToFill完全展示并拉伸，aspectFill展示最长边，aspectFit展示最短边 -->
+		<!-- src路径设置可以设置网络地址或本地图片文件路径 -->
+		<image src="../../static/images/good2.jpeg" mode="aspectFill" show-menu-by-longpress style="width: 750rpx;height: 300rpx;"></image>
+	
+		<!-- 视频自动播放：只有在静音的模式下才能自动播放，也就是说autoplay，muted要同时设置才行 -->
+		<video src="https://vd2.bdstatic.com/mda-pc2htvp2093m9jgc/720p/h264/1677846896651600680/mda-pc2htvp2093m9jgc.mp4?v_from_s=bdapp-bdappcore-feed-suzhou" controls autoplay muted></video>
 	</view>
 </template>
 
@@ -85,6 +94,8 @@
 	width: 750rpx;
 	height: 550rpx;
 	background-color: pink;
+	margin-top: 20rpx;
+	margin-bottom: 20rpx;
 	
 }
 </style>
