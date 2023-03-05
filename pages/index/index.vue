@@ -50,7 +50,16 @@
 		<image src="../../static/images/good2.jpeg" mode="aspectFill" show-menu-by-longpress style="width: 750rpx;height: 300rpx;"></image>
 	
 		<!-- 视频自动播放：只有在静音的模式下才能自动播放，也就是说autoplay，muted要同时设置才行 -->
+		<!-- controls：当设置这个属性为false时，则不展示视频画面下面的暂停，快进按钮，用户可以自定义设置 -->
+		<!-- 对设置的设置如果是非字符串值，则需要通过vue动态绑定的形式设置，否则设置的值是字符串。 -->
 		<video src="https://vd2.bdstatic.com/mda-pc2htvp2093m9jgc/720p/h264/1677846896651600680/mda-pc2htvp2093m9jgc.mp4?v_from_s=bdapp-bdappcore-feed-suzhou" controls autoplay muted></video>
+	
+		<!-- 表单组件 -->
+		<button type="default" size="mini">提交表单</button>
+		<button type="warn" loading plain>提交表单</button>
+		
+		<u-button class="custom-style" text="雪月夜"></u-button>
+		
 	</view>
 </template>
 
@@ -61,6 +70,7 @@
 </script>
 
 <style lang="scss">
+	
 .box {
 	width: 750rpx;
 	height: 200px;
