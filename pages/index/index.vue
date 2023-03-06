@@ -63,7 +63,11 @@
 
 		<!-- navigator导航组件，url赋值有2种，相对路径和绝对路径"../first/first"，"/pages/first/first" -->
 		<!-- navigator导航组件还有一套对应的导航api, 它们是和open-type类型对应，如uni.navigateTo -->
-		<navigator url="/pages/news/news" open-type="navigate">去新闻列表</navigator>
+		<!-- navigate：不支持跳转tab里的页面 -->
+		<navigator url="/pages/news/news" open-type="navigate">去关于页面</navigator>
+		<!-- reLaunch：关闭上一个页面，支持跳转tab里的页面 -->
+		<navigator url="/pages/news/news" open-type="reLaunch">新闻列表</navigator>
+		
  
 	</view>
 </template>
