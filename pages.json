@@ -26,6 +26,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/vue-demo/vue-demo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
