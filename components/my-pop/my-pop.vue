@@ -4,6 +4,7 @@
 		<view class="alert" :style="{height: state?'200rpx':'0rpx'}"></view>
 		<button type="default" size="mini" @click="closeAlert">关闭</button>
 		<button type="default" size="mini" @click.native="show">本地事件监听</button>
+		<button type="default" size="mini" @click="syncAlert">属性同步更新</button>
 
 	</view>
 </template>
@@ -23,6 +24,9 @@
 			},
 			show(e) {
 				console.log(e)
+			},
+			syncAlert() {
+				this.$emit('update:state',false)
 			}
 		}
 	}
