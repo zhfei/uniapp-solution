@@ -16,7 +16,7 @@
 		methods: {
 			goLife() {
 				uni.reLaunch({
-					url:'/pages/life-circle/life-circle'
+					url:'/pages/life-circle/life-circle?wd=123&author=张三'
 				})
 			}
 		}
