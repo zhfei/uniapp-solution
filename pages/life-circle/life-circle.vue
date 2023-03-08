@@ -1,6 +1,7 @@
 <template>
 	<view>
 		生命周期
+		<view @click="goBack">  返回上一级 </view>
 	</view>
 </template>
 
@@ -10,6 +11,11 @@
 			return {
 				
 			};
+		},
+		methods: {
+			goBack() {
+				uni.navigateBack()
+			}
 		},
 		created() {
 			console.log('组件实例创建完成')
