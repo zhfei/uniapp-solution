@@ -48,7 +48,7 @@
             "path" : "pages/center/center",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "广场",
                 "enablePullDownRefresh": false
             }
             
@@ -62,6 +62,7 @@
 	},
 	"uniIdRouter": {},
 	"tabBar": {
+		"iconfontSrc": "static/iconfonts/iconfont.ttf",
 		"color": "#7A7E83",
 		"selectedColor": "#3cc51f",
 		"borderStyle": "black",
@@ -69,19 +70,43 @@
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"text": "首页"
+				"text": "首页",
+				"iconfont": {
+					"text": "\ue699",
+					"selectedText": "\ue699",
+					"color": "#7A7E83",
+					"selectedColor": "#3cc51f"
+				}
 			},
 			{
 				"pagePath": "pages/news/news",
-				"text": "新闻"
+				"text": "新闻",
+				"iconfont": {
+					"text": "\ue68a",
+					"selectedText": "\ue68a",
+					"color": "#7A7E83",
+					"selectedColor": "#3cc51f"
+				}
 			},
 			{
 				"pagePath": "pages/about/about",
-				"text": "关于"
+				"text": "关于",
+				"iconfont": {
+					"text": "\ue6a1",
+					"selectedText": "\ue6a1",
+					"color": "#7A7E83",
+					"selectedColor": "#3cc51f"
+				}
 			},
 			{
 				"pagePath": "pages/life-circle/life-circle",
-				"text": "生命周期"
+				"text": "生命周期",
+				"iconfont": {
+					"text": "\ue60d",
+					"selectedText": "\ue60d",
+					"color": "#7A7E83",
+					"selectedColor": "#3cc51f"
+				}
 			}
 		]
 	}
