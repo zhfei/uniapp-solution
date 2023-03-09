@@ -10,6 +10,7 @@
 		<button type="default" size="mini" @click="showTabBar(2)">展示TabBar</button>
 		<button type="default" size="mini" @click="showTabBar(3)">展示Brage</button>
 		<button type="default" size="mini" @click="showTabBar(4)">隐藏Brage</button>
+		<image :src="imageUrl" mode="widthFix" style="width: 100%" @click="getImageUrl"></image>
 	</view>
 </template>
 
@@ -17,7 +18,7 @@
 	export default {
 		data() {
 			return {
-				
+				imageUrl: '/static/images/good1.jpeg'
 			};
 		},
 		methods: {
@@ -79,6 +80,19 @@
 						index:2
 					})
 				}
+			},
+			getImageUrl() {
+				uni.showLoading({
+					title:'数据加载中...'
+				})
+				uni.request({
+					url:'https://dog.ceo/api/breeds/image/random',
+					success: (res) => {
+						console.log(res)
+						this.imageUrl = res.data.message
+						uni.hideLoading()
+					}
+				})
 			}
 		} 
 	}
