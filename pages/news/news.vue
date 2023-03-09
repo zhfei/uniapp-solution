@@ -6,6 +6,10 @@
 		<view @click="showAlert1">点击交互反馈toast</view>
 		<view @click="showAlert2">点击交互反馈Modal弹窗</view>
 		<view @click="showAlert3">点击交互反馈sheet弹窗</view>
+		<button type="default" size="mini" @click="showTabBar(1)">隐藏TabBar</button>
+		<button type="default" size="mini" @click="showTabBar(2)">展示TabBar</button>
+		<button type="default" size="mini" @click="showTabBar(3)">展示Brage</button>
+		<button type="default" size="mini" @click="showTabBar(4)">隐藏Brage</button>
 	</view>
 </template>
 
@@ -59,8 +63,24 @@
 						console.log(e)
 					}
 				})
+			},
+			showTabBar(state) {
+				if (state === 1) {
+					uni.hideTabBar()
+				} else if (state === 2){
+					uni.showTabBar()
+				} else if (state === 3){
+					uni.setTabBarBadge({
+						index:2,
+						text:'10'
+					})
+				} else if (state === 4){
+					uni.removeTabBarBadge({
+						index:2
+					})
+				}
 			}
-		}
+		} 
 	}
 </script>
 
