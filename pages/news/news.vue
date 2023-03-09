@@ -11,6 +11,12 @@
 		<button type="default" size="mini" @click="showTabBar(3)">展示Brage</button>
 		<button type="default" size="mini" @click="showTabBar(4)">隐藏Brage</button>
 		<image :src="imageUrl" mode="widthFix" style="width: 100%" @click="getImageUrl"></image>
+		<view class="">
+			可爱猫
+		</view>
+		<view v-for="item in cats">
+			<image :src="item.url" mode="widthFix" style="width: 100%" @click="getImageUrl"></image>
+		</view>
 	</view>
 </template>
 
@@ -18,7 +24,8 @@
 	export default {
 		data() {
 			return {
-				imageUrl: '/static/images/good1.jpeg'
+				imageUrl: '/static/images/good1.jpeg',
+				cats: []
 			};
 		},
 		methods: {
@@ -91,6 +98,17 @@
 						console.log(res)
 						this.imageUrl = res.data.message
 						uni.hideLoading()
+					}
+				})
+				
+				uni.request({
+					url:'https://api.thecatapi.com/v1/images/search',
+					data:{
+					  limit:3
+					},
+					success: (res) => {
+						console.log(res)
+						this.cats = res.data
 					}
 				})
 			}
