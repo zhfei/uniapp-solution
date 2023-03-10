@@ -1,9 +1,10 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+		<view v-for="(item,index) in list" :key="index">
+			<image class="logo" src="/static/logo.png"></image>
+			<text class="title">{{item}}</text>
 		</view>
+		
 	</view>
 </template>
 
@@ -11,14 +12,18 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				list:[]
 			}
 		},
 		onLoad() {
 			uniCloud.callFunction({
-				name:'myCloudFunc'
+				name:'myCloudFunc',
+				data:{
+					num: 5
+				}
 			}).then((res)=>{
 				console.log(res)
+				this.list = res.result
 			})
 		},
 		methods: {
