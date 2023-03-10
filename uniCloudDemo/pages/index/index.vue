@@ -15,7 +15,11 @@
 			}
 		},
 		onLoad() {
-
+			uniCloud.callFunction({
+				name:'myCloudFunc'
+			}).then((res)=>{
+				console.log(res)
+			})
 		},
 		methods: {
 
