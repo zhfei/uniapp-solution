@@ -25,6 +25,13 @@
 				console.log(res)
 				this.list = res.result
 			})
+			
+			uniCloud.callFunction({
+				name:'myCloudDB',
+				success: (res) => {
+					console.log(res);
+				}
+			})
 		},
 		methods: {
 
