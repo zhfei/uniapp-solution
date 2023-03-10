@@ -68,13 +68,30 @@
 		<!-- reLaunch：关闭上一个页面，支持跳转tab里的页面 -->
 		<navigator url="/pages/news/news" open-type="reLaunch">新闻列表</navigator>
 		
+		
  
 	</view>
 </template>
 
 <script>
 	export default {
-
+		onLoad() {
+			
+		},
+		mounted() {
+			console.log('mounted')
+			uni.setStorage({
+				key:'key1ddd',
+				data:'uniapp自学',
+				success() {
+					console.log('成功')
+				}
+			})
+			uni.setStorageSync('key2dddd','helllll')
+			
+			const v = uni.getStorageSync('key2dddd')
+			console.log(v)
+		}
 	}
 </script>
 
