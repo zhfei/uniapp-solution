@@ -1,5 +1,11 @@
 <template>
 	<view class="content">
+		<form @submit="submitData">
+			<input type="text" name="name">
+			<input type="tel" name="phone">
+			<button form-type="submit">提交表单</button>
+		</form>
+		
 		<view v-for="(item,index) in list" :key="index">
 			<image class="logo" src="/static/logo.png"></image>
 			<text class="title">{{item}}</text>
@@ -34,7 +40,18 @@
 			})
 		},
 		methods: {
-
+			async submitData(v) {
+				console.log(v)
+				let {name,phone} = v.detail.value
+			 	let res = await uniCloud.callFunction({
+					name:'myCloudDB',
+					data:{
+						name,
+						phone
+					}
+				})
+				console.log(res)
+			}
 		}
 	}
 </script>
