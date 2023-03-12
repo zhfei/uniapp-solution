@@ -1,0 +1,7 @@
+{
+  "name": "myCloudRemove",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
