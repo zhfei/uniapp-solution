@@ -1,6 +1,6 @@
 <template>
 	<view class="add">
-		<form action="submit">
+		<form @submit="goSubmit">
 			<view class="item">
 				<input type="text" name='title' placeholder="请输入标题"></input>
 			</view>
@@ -11,7 +11,8 @@
 				<textarea type="text" name='content' placeholder="请输入详细内容"></textarea>
 			</view>
 			<view class="item">
-				<button>提交</button>
+				<button form-type="submit" type="primary">提交</button>
+				<button form-type="reset">重置</button>
 			</view>
 		</form>
 	</view>
@@ -25,7 +26,18 @@
 			}
 		},
 		methods: {
-			
+			goSubmit(v) {
+				console.log(v)
+				let detail = v.detail.value
+				uniCloud.callFunction({
+					name:"add_one_article",
+					data:{
+						detail
+					}
+				}).then(res => {
+					console.log(res)
+				})
+			}
 		}
 	}
 </script>

@@ -25,6 +25,9 @@
 			}
 		},
 		onLoad() {
+			
+		},
+		onShow() {
 			this.getAticles()
 		},
 		methods: {
