@@ -1,13 +1,13 @@
 <template>
 	<view class="content">
-		<view class="cell" v-for="item in 5">
+		<view class="cell" v-for="item in articles" :key="item._id">
 			<view class="left">
 				<view class="title">
-					我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本
+					{{item.title}}
 				</view>
 				<view class="subTitle">
-					<text>小明</text>
-					<text>2023.2.2</text>
+					<text>{{item.author}}</text>
+					<text>{{item.posttime}}</text>
 					<text>删除</text>
 				</view>
 			</view>
@@ -21,13 +21,21 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				articles: []
 			}
 		},
 		onLoad() {
-
+			this.getAticles()
 		},
 		methods: {
+			getAticles() {
+				uniCloud.callFunction({
+					name:'get_articles'
+				}).then(res => {
+					console.log(res)
+					this.articles = res.result.data
+				})
+			},
 			goAdd() {
 				uni.navigateTo({
 					url:'/pages/add/add'
@@ -62,7 +70,7 @@
 		}
 		.subTitle {
 			font-size: 30rpx;
-			color: lightblue;
+			color: lightgray;
 			text {
 				display: inline-block;
 				margin: 0 10rpx;
