@@ -6,11 +6,14 @@
 					我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本我是两行自动换的文本
 				</view>
 				<view class="subTitle">
-					默认子标题
+					<text>小明</text>
+					<text>2023.2.2</text>
+					<text>删除</text>
 				</view>
 			</view>
 			<image class="right" src="../../static/jiazaishibai.png" mode="aspectFit"></image>
 		</view>
+		<view class="add" @click="goAdd">+</view>
 	</view>
 </template>
 
@@ -25,7 +28,11 @@
 
 		},
 		methods: {
-
+			goAdd() {
+				uni.navigateTo({
+					url:'/pages/add/add'
+				})
+			}
 		}
 	}
 </script>
@@ -56,6 +63,10 @@
 		.subTitle {
 			font-size: 30rpx;
 			color: lightblue;
+			text {
+				display: inline-block;
+				margin: 0 10rpx;
+			}
 		}
 	}
 	.right {
@@ -63,5 +74,20 @@
 		height: 260rpx;
 		margin: 20rpx;
 	}
+}
+.add {
+	width: 100rpx;
+	height: 100rpx;
+	background-color: darkgreen;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50rpx;
+	position: fixed;
+	right: 100rpx;
+	bottom: 100rpx;
+	box-shadow: 0 0 15rpx 10rpx rgba(30, 150, 200, 0.5);
+	
 }
 </style>

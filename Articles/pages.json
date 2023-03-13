@@ -10,7 +10,7 @@
             "path" : "pages/add/add",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "新增新闻",
+                "navigationBarTitleText": "新增",
                 "enablePullDownRefresh": false
             }
             
@@ -19,7 +19,7 @@
             "path" : "pages/edit/edit",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "编辑新闻",
+                "navigationBarTitleText": "编辑",
                 "enablePullDownRefresh": false
             }
             
