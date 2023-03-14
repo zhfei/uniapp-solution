@@ -48,7 +48,14 @@
 						detail
 					}
 				}).then(res => {
-					console.log(res)
+					uni.showToast({
+						title:"保存成功"
+					})
+					
+					setTimeout(()=>{
+						uni.navigateBack()
+					}, 1000)
+					
 				})
 			}
 		}

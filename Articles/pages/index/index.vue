@@ -24,8 +24,8 @@
 				articles: []
 			}
 		},
-		onLoad() {
-			
+		onReachBottom() {
+			this.getAticles()
 		},
 		onShow() {
 			this.getAticles()
@@ -33,10 +33,13 @@
 		methods: {
 			getAticles() {
 				uniCloud.callFunction({
-					name:'get_articles'
+					name:'get_articles',
+					data:{
+						skip:this.articles.length
+					}
 				}).then(res => {
 					console.log(res)
-					this.articles = res.result.data
+					this.articles = [...this.articles, ...res.result.data]
 				})
 			},
 			goAdd() {
