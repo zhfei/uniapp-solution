@@ -2,16 +2,16 @@
 	<view class="add">
 		<form @submit="goSubmit">
 			<view class="item">
-				<input type="text" name='title' placeholder="请输入标题"></input>
+				<input v-model="detail.title" type="text" name='title' placeholder="请输入标题"></input>
 			</view>
 			<view class="item">
-				<input type="text" name='author' placeholder="请输入作者"></input>
+				<input v-model="detail.author" type="text" name='author' placeholder="请输入作者"></input>
 			</view>
 			<view class="item">
-				<textarea type="text" name='content' placeholder="请输入详细内容"></textarea>
+				<textarea v-model="detail.content" type="text" name='content' placeholder="请输入详细内容"></textarea>
 			</view>
 			<view class="item">
-				<button form-type="submit" type="primary">提交</button>
+				<button form-type="submit" type="primary" :disabled="isDiable(detail)">提交</button>
 				<button form-type="reset">重置</button>
 			</view>
 		</form>
@@ -22,10 +22,23 @@
 	export default {
 		data() {
 			return {
-				
+				detail: {
+					title: '',
+					author: '',
+					content: ''
+				}
 			}
 		},
 		methods: {
+			isDiable(detail) {
+				for (let key in detail) {
+					// form表单中，有一个value是空，则返回true,即：表示不可用。
+					if (!detail[key]) {
+						return true
+					}
+				}
+			},
+			
 			goSubmit(v) {
 				console.log(v)
 				let detail = v.detail.value
@@ -55,6 +68,9 @@
 		textarea {
 			height: 80px;
 			box-sizing: border-box;
+		}
+		button {
+			margin-top: 20px;
 		}
 	}
 }
