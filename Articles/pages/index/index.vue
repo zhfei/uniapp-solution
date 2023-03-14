@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		
 		<view class="cell" v-for="item in articles" :key="item._id">
 			<view class="left">
 				<view class="title">
@@ -7,13 +8,14 @@
 				</view>
 				<view class="subTitle">
 					<text>{{item.author}}</text>
-					<text>{{item.posttime}}</text>
-					<text>删除</text>
+					<uni-dateformat :date="item.posttime" format="MM-dd" threshold="[60000, 3600000]"></uni-dateformat>
 				</view>
 			</view>
 			<image class="right" src="../../static/jiazaishibai.png" mode="aspectFit"></image>
 		</view>
-		<view class="add" @click="goAdd">+</view>
+		<view class="add" @click="goAdd">
+			<uni-icons type="plusempty" size="20" color="#fff"></uni-icons>
+		</view>
 	</view>
 </template>
 

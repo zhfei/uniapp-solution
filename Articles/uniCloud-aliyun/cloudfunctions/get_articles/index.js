@@ -6,9 +6,10 @@ exports.main = async (event, context) => {
 	//event为客户端上传的参数
 	console.log('event : ', event)
 	
+	// {skip=0}: 自动解构传参默认值
 	let {skip=0} = event
 	
-	const res = await db.collection('Article').limit(5).skip(skip).get()
+	const res = await db.collection('Article').limit(5).skip(skip).orderBy('posttime','desc').get()
 	
 	//返回数据给客户端
 	return res
