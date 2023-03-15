@@ -1,16 +1,21 @@
 <template>
 	<view class="detail">
-		<view class="title">{{detail.title}}</view>
-		<view class="info">
-			<text>{{detail.author}}</text>
-			<uni-dateformat format="yyyy年MM月dd日 hh:mm:ss" :date="detail.posttime"></uni-dateformat>
+		<view v-if="loadState">
+			<view class="title">{{detail.title}}</view>
+			<view class="info">
+				<text>{{detail.author}}</text>
+				<uni-dateformat format="yyyy年MM月dd日 hh:mm:ss" :date="detail.posttime"></uni-dateformat>
+			</view>
+			<view class="content">
+				{{detail.content}}
+			</view>
+			<view class="btnGroup">
+				<button size="mini">修改</button>
+				<button size="mini" type="warn">删除</button>
+			</view>
 		</view>
-		<view class="content">
-			{{detail.content}}
-		</view>
-		<view class="btnGroup">
-			<button size="mini">修改</button>
-			<button size="mini" type="warn">删除</button>
+		<view v-else>
+			<uni-load-more status="loading"></uni-load-more>
 		</view>
 	</view>
 </template>
@@ -20,7 +25,8 @@
 	export default {
 		data() {
 			return {
-				detail:{}
+				detail:{},
+				loadState: false
 			}
 		},
 		onLoad(e) {
@@ -38,6 +44,7 @@
 				}).then(res => {
 					console.log(res)
 					this.detail = res.result.data[0]
+					this.loadState = true
 				})
 			}
 		}
