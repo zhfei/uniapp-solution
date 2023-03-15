@@ -1,12 +1,12 @@
 <template>
 	<view class="detail">
-		<view class="title">标题</view>
+		<view class="title">{{detail.title}}</view>
 		<view class="info">
-			<text>张三</text>
-			<text>2023年 3月15日 星期三 21时30分44秒</text>
+			<text>{{detail.author}}</text>
+			<uni-dateformat format="yyyy年MM月dd日 hh:mm:ss" :date="detail.posttime"></uni-dateformat>
 		</view>
 		<view class="content">
-			新闻内容
+			{{detail.content}}
 		</view>
 		<view class="btnGroup">
 			<button size="mini">修改</button>
@@ -16,14 +16,30 @@
 </template>
 
 <script>
+	let id;
 	export default {
 		data() {
 			return {
-				
+				detail:{}
 			}
 		},
+		onLoad(e) {
+			console.log(e)
+			id = e.id
+			this.getDetail()
+		},
 		methods: {
-			
+			getDetail() {
+				uniCloud.callFunction({
+					name:'get_article_one',
+					data:{
+						id
+					}
+				}).then(res => {
+					console.log(res)
+					this.detail = res.result.data[0]
+				})
+			}
 		}
 	}
 </script>
@@ -42,6 +58,10 @@
 	.info {
 		font-size: 30rpx;
 		color: gray;
+		padding: 10px 0;
+		text {
+			margin-right: 10px;
+		}
 	}
 	.content {
 		line-height: 1.5em;
