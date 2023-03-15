@@ -53,6 +53,24 @@
 					console.log(res)
 					this.detail = res.result.data[0]
 				})
+			},
+			goSubmit(v) {
+				// this.detail中包含_id
+				let detail = this.detail
+				uniCloud.callFunction({
+					name:"update_one_article",
+					data:{
+						detail
+					}
+				}).then(res => {
+					console.log(res)
+					uni.showToast({
+						title:"更新成功"
+					})
+					setTimeout(()=>{
+						uni.navigateBack()
+					}, 1000)
+				})
 			}
  		}
 	}

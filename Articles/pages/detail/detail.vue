@@ -32,6 +32,8 @@
 		onLoad(e) {
 			console.log(e)
 			id = e.id
+		},
+		onShow() {
 			this.getDetail()
 		},
 		methods: {
