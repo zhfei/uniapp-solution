@@ -10,7 +10,7 @@
 				{{detail.content}}
 			</view>
 			<view class="btnGroup">
-				<button size="mini">修改</button>
+				<button size="mini" @click="goEdit">修改</button>
 				<button size="mini" type="warn">删除</button>
 			</view>
 		</view>
@@ -45,6 +45,11 @@
 					console.log(res)
 					this.detail = res.result.data[0]
 					this.loadState = true
+				})
+			},
+			goEdit () {
+				uni.navigateTo({
+					url:'/pages/edit/edit?id='+id
 				})
 			}
 		}
