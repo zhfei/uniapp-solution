@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		
-		<view class="cell" v-for="item in articles" :key="item._id">
+		<view @click="goDetail(item._id)" class="cell" v-for="item in articles" :key="item._id">
 			<view class="left">
 				<view class="title">
 					{{item.title}}
@@ -48,8 +48,14 @@
 				uni.navigateTo({
 					url:'/pages/add/add'
 				})
+			},
+			goDetail(v) {
+				console.log(v)
+				uni.navigateTo({
+					url:'/pages/detail/detail?id='+v
+				})
 			}
-		}
+ 		}
 	}
 </script>
 

@@ -27,8 +27,6 @@ exports.main = async (event, context) => {
 	// ])
 	
 	let {name,phone} = event
-	console.log('name:',name)
-	console.log('phone:',phone)
 	const collection = await db.collection('User').add({
 		name,
 		phone
