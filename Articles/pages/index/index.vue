@@ -26,6 +26,10 @@
 				articles: []
 			}
 		},
+		onPullDownRefresh() {
+			this.articles = []
+			this.getAticles()
+		},
 		onReachBottom() {
 			this.getAticles()
 		},
@@ -42,6 +46,7 @@
 				}).then(res => {
 					console.log(res)
 					this.articles = [...this.articles, ...res.result.data]
+					uni.stopPullDownRefresh()
 				})
 			},
 			goAdd() {
