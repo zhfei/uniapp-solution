@@ -1,0 +1,7 @@
+{
+  "name": "add_pic_data_one",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

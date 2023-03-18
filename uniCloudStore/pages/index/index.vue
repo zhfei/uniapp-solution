@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		<input type="text" v-model="title"/>
 		<uni-file-picker 
 			v-model="imageValue" 
 			fileMediatype="image" 
@@ -19,7 +20,9 @@
 	export default {
 		data() {
 			return {
-				imageValue: []
+				imageValue: [],
+				imageUrls: [],
+				title: ''
 			}
 		},
 		onLoad() {
@@ -37,7 +40,18 @@
 			
 			// 上传成功
 			success(e){
-				console.log('上传成功')
+				console.log('上传成功',e)
+				this.imageUrls = e.tempFilePaths
+				
+				uniCloud.callFunction({
+					name:'add_pic_data_one',
+					data:{
+						title: this.title,
+						imageUrls: this.imageUrls
+					}
+				}).then(res => {
+					console.log(res)
+				})
 			},
 			
 			// 上传失败
