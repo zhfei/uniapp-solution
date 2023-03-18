@@ -3,13 +3,15 @@
 		<uni-file-picker 
 			v-model="imageValue" 
 			fileMediatype="image" 
-			limit="3"
 			mode="grid" 
+			:auto-upload="false"
 			@select="select" 
 			@progress="progress" 
 			@success="success" 
 			@fail="fail" 
+			ref="files"
 		/>
+		<button @click="upload">开始上传</button>
 	</view>
 </template>
 
@@ -23,8 +25,29 @@
 		onLoad() {
 
 		},
-		methods: {
-
+		methods:{
+			// 获取上传状态
+			select(e){
+				console.log('选择文件：',e)
+			},
+			// 获取上传进度
+			progress(e){
+				console.log('上传进度：',e)
+			},
+			
+			// 上传成功
+			success(e){
+				console.log('上传成功')
+			},
+			
+			// 上传失败
+			fail(e){
+				console.log('上传失败：',e)
+			},
+			
+			upload() {
+				this.$refs.files.upload()
+			}
 		}
 	}
 </script>
