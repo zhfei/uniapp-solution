@@ -1,10 +1,10 @@
 <template>
 	<view class="container">
-		<view class="box" v-for="(item,index) in 5" :key="index">
-			<image src="../../static/logo.png" mode="aspectFit"></image>
+		<view class="box" v-for="(item,index) in imageUrls" :key="index">
+			<image :src="item" mode="aspectFit"></image>
 			<view class="close">X</view>
 		</view>
-		<view class="box add">
+		<view class="box add" @click="addImage">
 			+
 		</view>
 	</view>
@@ -14,11 +14,18 @@
 	export default {
 		data() {
 			return {
-				
+				imageUrls: []
 			}
 		},
 		methods: {
-			
+			addImage() {
+				uni.chooseImage({
+					success:(res) => {
+						console.log(res)
+						this.imageUrls = [...this.imageUrls, ...res.tempFilePaths]
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -57,6 +64,12 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+		}
+		
+		// 显示图片内容不能超过父容器边界
+		image {
+			max-width: 100%;
+			max-height: 100%;
 		}
 		
 	}
