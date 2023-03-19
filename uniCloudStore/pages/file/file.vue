@@ -16,7 +16,8 @@
 		data() {
 			return {
 				imageUrls: [],
-				maxCount: 9
+				maxCount: 9,
+				networkPics: []
 			}
 		},
 		methods: {
@@ -44,15 +45,38 @@
 				})
 			},
 			upload(e) {
-				let urlstr = this.imageUrls[e]
+				// let urlstr = this.imageUrls[e]
+				// let urlList = urlstr.split('.')
+				// let imageType = urlList[1]
+				// uniCloud.uploadFile({
+				// 	cloudPath:'自定义上传'+Date.now()+'.'+imageType,
+				// 	filePath:this.imageUrls[e],
+				// 	success(res) {
+				// 		console.log(res)
+				// 	}
+				// })
+				
+				// 获取每个网络请求的Promise数组
+			    let uploadArr =	this.imageUrls.map(async item => {
+					return await this.uploadFunc(item)
+				})
+				// 监听所有的上传都完成，即：uploadArr有值时
+				Promise.all(uploadArr).then(res => {
+					let fileIDs = res.map(item => {
+						return item.fileID
+					})
+					
+					this.networkPics = fileIDs
+					console.log(fileIDs)
+				})
+			},
+			// 解决批量图片上传问题：返回每个上传请求的Promise
+			uploadFunc(urlstr) {
 				let urlList = urlstr.split('.')
 				let imageType = urlList[1]
-				uniCloud.uploadFile({
+			    return uniCloud.uploadFile({
 					cloudPath:'自定义上传'+Date.now()+'.'+imageType,
-					filePath:this.imageUrls[e],
-					success(res) {
-						console.log(res)
-					}
+					filePath:urlstr
 				})
 			}
 		}
