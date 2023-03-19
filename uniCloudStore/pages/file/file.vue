@@ -2,11 +2,9 @@
 	<view class="container">
 		<view class="box" v-for="(item,index) in imageUrls" :key="index">
 			<image :src="item" mode="aspectFit"></image>
-			<view class="close">X</view>
+			<view class="close" @click="colseImage(index)">X</view>
 		</view>
-		<view class="box add" @click="addImage">
-			+
-		</view>
+		<view class="box add" @click="addImage" v-show="imageUrls.length < maxCount">+</view>
 	</view>
 </template>
 
@@ -14,17 +12,27 @@
 	export default {
 		data() {
 			return {
-				imageUrls: []
+				imageUrls: [],
+				maxCount: 9
 			}
 		},
 		methods: {
 			addImage() {
 				uni.chooseImage({
+					count:this.maxCount,
 					success:(res) => {
 						console.log(res)
 						this.imageUrls = [...this.imageUrls, ...res.tempFilePaths]
+						if (this.imageUrls.length > this.maxCount) {
+							// splice删除数组中的部分，对源数组进行修改
+							this.imageUrls.splice(this.maxCount)
+						}
 					}
 				})
+			},
+			colseImage (e) {
+				console.log(e)
+				this.imageUrls.splice(e,1)
 			}
 		}
 	}
