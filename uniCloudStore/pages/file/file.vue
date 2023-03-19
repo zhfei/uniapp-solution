@@ -1,10 +1,13 @@
 <template>
-	<view class="container">
-		<view class="box" v-for="(item,index) in imageUrls" :key="index">
-			<image :src="item" mode="aspectFit"></image>
-			<view class="close" @click="colseImage(index)">X</view>
+	<view>
+		<view class="container">
+			<view class="box" v-for="(item,index) in imageUrls" :key="index">
+				<image :src="item" mode="aspectFit" @click="previewImage(index)"></image>
+				<view class="close" @click="colseImage(index)">X</view>
+			</view>
+			<view class="box add" @click="addImage" v-show="imageUrls.length < maxCount">+</view>
 		</view>
-		<view class="box add" @click="addImage" v-show="imageUrls.length < maxCount">+</view>
+		<button @click="upload(0)">上传</button>
 	</view>
 </template>
 
@@ -33,6 +36,24 @@
 			colseImage (e) {
 				console.log(e)
 				this.imageUrls.splice(e,1)
+			},
+			previewImage (e) {
+				uni.previewImage({
+					urls:this.imageUrls,
+					current:e
+				})
+			},
+			upload(e) {
+				let urlstr = this.imageUrls[e]
+				let urlList = urlstr.split('.')
+				let imageType = urlList[1]
+				uniCloud.uploadFile({
+					cloudPath:'自定义上传'+Date.now()+'.'+imageType,
+					filePath:this.imageUrls[e],
+					success(res) {
+						console.log(res)
+					}
+				})
 			}
 		}
 	}
