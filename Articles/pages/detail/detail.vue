@@ -9,6 +9,9 @@
 			<view class="content">
 				{{detail.content}}
 			</view>
+			<view v-if="detail.imageUrls && detail.imageUrls.length" class="images">
+				<image v-for="item in detail.imageUrls" :src="item" mode="widthFix" ></image>
+			</view>
 			<view class="btnGroup">
 				<button size="mini" @click="goEdit">修改</button>
 				<button size="mini" type="warn">删除</button>
@@ -82,6 +85,12 @@
 		align-items: 2em;
 		font-size: 40rpx;
 		color: dimgray;
+	}
+	.images {
+		padding-top: 50rpx;
+		image {
+			width: 100%;
+		}
 	}
 	.btnGroup {
 		padding: 20rpx 0;

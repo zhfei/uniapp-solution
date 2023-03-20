@@ -11,7 +11,9 @@
 					<uni-dateformat :date="item.posttime" format="MM-dd" threshold="[60000, 3600000]"></uni-dateformat>
 				</view>
 			</view>
-			<image class="right" src="../../static/jiazaishibai.png" mode="aspectFit"></image>
+			
+			<image v-if="item.imageUrls && item.imageUrls.length" class="right" :src="item.imageUrls[0]" mode="aspectFit"></image>
+			<image v-else class="right" src="../../static/jiazaishibai.png" mode="aspectFit"></image>
 		</view>
 		<view class="add" @click="goAdd">
 			<uni-icons type="plusempty" size="20" color="#fff"></uni-icons>
