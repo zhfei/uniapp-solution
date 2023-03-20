@@ -11,6 +11,14 @@
 				<textarea v-model="detail.content" type="text" name='content' placeholder="请输入详细内容"></textarea>
 			</view>
 			<view class="item">
+				<uni-file-picker
+					v-model="imageValue" 
+					fileMediatype="image" 
+					mode="grid" 
+					@success="uploadSuccess" 
+				/>
+			</view>
+			<view class="item">
 				<button form-type="submit" type="primary" :disabled="isDiable(detail)">提交</button>
 				<button form-type="reset">重置</button>
 			</view>
@@ -27,7 +35,9 @@
 					title: '',
 					author: '',
 					content: ''
-				}
+				},
+				imageValue: [],
+				imageUrls: []
 			}
 		},
 		onLoad(e) {
@@ -52,15 +62,26 @@
 				}).then(res=>{
 					console.log(res)
 					this.detail = res.result.data[0]
+					
+					let urls = this.detail.imageUrls.map(item=>{
+						return {url:item}
+					})
+					this.imageValue = urls
 				})
 			},
 			goSubmit(v) {
+				console.log(this.imageValue)
+				// 将新增和接口返回的合成
+				let urls = this.imageValue.map(item => {
+					return item.url
+				})
 				// this.detail中包含_id
 				let detail = this.detail
 				uniCloud.callFunction({
 					name:"update_one_article",
 					data:{
-						detail
+						detail,
+						imageUrls: urls
 					}
 				}).then(res => {
 					console.log(res)
@@ -71,6 +92,10 @@
 						uni.navigateBack()
 					}, 1000)
 				})
+			},
+			uploadSuccess(e) {
+				console.log(e)
+				this.imageUrls = e.tempFilePaths
 			}
  		}
 	}
