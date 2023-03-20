@@ -41,12 +41,18 @@
 		},
 		methods: {
 			isDiable(detail) {
-				for (let key in detail) {
-					// form表单中，有一个value是空，则返回true,即：表示不可用。
-					if (!detail[key]) {
-						return true
-					}
-				}
+				// for (let key in detail) {
+				// 	// form表单中，有一个value是空，则返回true,即：表示不可用。
+				// 	if (!detail[key]) {
+				// 		return true
+				// 	}
+				// }
+				console.log(detail)
+				// 文章中的属性有一个为空，就返回true，不可用
+				let res = Object.keys(detail).some((key, index) => {
+					return detail[key] == ''
+				})
+				return res
 			},
 			
 			goSubmit(v) {
