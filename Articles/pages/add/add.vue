@@ -11,6 +11,14 @@
 				<textarea v-model="detail.content" type="text" name='content' placeholder="请输入详细内容"></textarea>
 			</view>
 			<view class="item">
+				<uni-file-picker
+					v-model="imageValue" 
+					fileMediatype="image" 
+					mode="grid" 
+					@success="uploadSuccess" 
+				/>
+			</view>
+			<view class="item">
 				<button form-type="submit" type="primary" :disabled="isDiable(detail)">提交</button>
 				<button form-type="reset">重置</button>
 			</view>
@@ -26,7 +34,9 @@
 					title: '',
 					author: '',
 					content: ''
-				}
+				},
+				imageValue: [],
+				imageUrls: []
 			}
 		},
 		methods: {
@@ -45,7 +55,8 @@
 				uniCloud.callFunction({
 					name:"add_one_article",
 					data:{
-						detail
+						detail,
+						imageUrls:this.imageUrls
 					}
 				}).then(res => {
 					uni.showToast({
@@ -57,6 +68,10 @@
 					}, 1000)
 					
 				})
+			},
+			uploadSuccess(e) {
+				console.log(e)
+				this.imageUrls = e.tempFilePaths
 			}
 		}
 	}
